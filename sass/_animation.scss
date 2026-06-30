@@ -1,0 +1,48 @@
+@keyframes mercury-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: $bp-tablet) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  body { font-size: 16px; }
+
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .nav-links a:not(.nav-ext) {
+    display: none;
+  }
+
+  .dl-grid {
+    grid-template-columns: 1fr;
+  }
+  .dl-card-primary {
+    grid-column: auto;
+  }
+
+  .hero-cta { width: 100%; }
+  .btn { flex: 1 1 auto; }
+}
+
+/* Respect reduced motion: freeze the wordmark sheen, drop smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .wordmark {
+    animation: none;
+    background-position: 40% 50%;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

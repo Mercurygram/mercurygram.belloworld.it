@@ -1,0 +1,40 @@
+# The URL the site will be built for
+base_url = "https://mercurygram.belloworld.it"
+
+title = "Mercurygram"
+description = "Telegram, de-googled. Privacy and security focused forks of Telegram for Android and Desktop."
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+# The default language; used in feeds.
+default_language = "en"
+
+[markdown]
+[markdown.highlighting]
+theme = "github-dark"
+
+[extra]
+username = "Timothy Mario Redaelli"
+email = "&#098;&#101;&#108;&#108;&#111;&#064;&#098;&#101;&#108;&#108;&#111;&#119;&#111;&#114;&#108;&#100;&#046;&#105;&#116;"
+
+tagline = "Telegram, de-googled."
+android_version = "12.8.1.1"
+desktop_version = "6.9.3.6"
+package_id = "it.belloworld.mercurygram"
+
+github_org = "https://github.com/Mercurygram"
+telegram_group = "https://t.me/Mercurygram"
+parent_site = "https://belloworld.it"
+
+# Android sources
+android_releases = "https://github.com/Mercurygram/Mercurygram/releases/latest"
+android_fdroid = "https://f-droid.org/en/packages/it.belloworld.mercurygram/"
+android_obtainium = "https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22it.belloworld.mercurygram%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FMercurygram%2FMercurygram%22%2C%22author%22%3A%22Mercurygram%22%2C%22name%22%3A%22Mercurygram%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%20%5C%22%5EMercurygram-%5C%5C%5C%5Cd%5C%22%7D%22%7D"
+
+# Desktop sources
+desktop_releases = "https://github.com/Mercurygram/mdesktop/releases"
+desktop_flathub = "https://flathub.org/apps/it.belloworld.mercurygram"

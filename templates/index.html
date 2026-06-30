@@ -1,0 +1,22 @@
+{% import "macros.html" as macros %}
+{% import "content.html" as content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  {{ macros::head() }}
+
+  <body>
+    {{ content::hero() }}
+
+    <main>
+      {{ content::why() }}
+      {{ content::android() }}
+      {{ content::desktop() }}
+
+      {% block content %}{% endblock content %}
+    </main>
+
+    {{ macros::footer() }}
+  </body>
+</html>

@@ -1,0 +1,23 @@
+// Breakpoints
+$bp-mobile: 600px;
+$bp-tablet: 900px;
+
+// Layout
+$maxw: 1080px;
+
+:root {
+  --ink: #0C1217;
+  --ink-2: #131C24;
+  --ink-3: #1A2530;
+  --quicksilver: #DCE4EC;
+  --mercury: #94A4B3;
+  --mercury-dim: #6E7E8E;
+  --hg: #5FB6D9;
+  --hg-bright: #8FD2EE;
+  --line: rgba(220, 228, 236, 0.12);
+  --line-strong: rgba(220, 228, 236, 0.22);
+
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}

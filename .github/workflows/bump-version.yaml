@@ -1,0 +1,74 @@
+name: Bump app version
+
+# Triggered by the Android (Mercurygram) and Desktop (mdesktop) release CIs via
+# repository_dispatch, or manually. Updates the version shown on the site, then
+# kicks the Deploy workflow (a GITHUB_TOKEN push does not retrigger it).
+on:
+  repository_dispatch:
+    types: [android-release, desktop-release]
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Which app"
+        required: true
+        type: choice
+        options: [android, desktop]
+      version:
+        description: "Version string, e.g. 12.8.1"
+        required: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Resolve platform and version
+        id: in
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            case "${{ github.event.action }}" in
+              android-release) platform=android ;;
+              desktop-release) platform=desktop ;;
+              *) echo "unknown dispatch type"; exit 1 ;;
+            esac
+            version='${{ github.event.client_payload.version }}'
+          else
+            platform='${{ inputs.platform }}'
+            version='${{ inputs.version }}'
+          fi
+          version="${version#v}"
+          if ! printf '%s' "$version" | grep -qE '^[0-9]+(\.[0-9]+){1,4}$'; then
+            echo "refusing suspicious version: '$version'"; exit 1
+          fi
+          echo "platform=$platform" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Update config.toml
+        id: bump
+        run: |
+          key="${{ steps.in.outputs.platform }}_version"
+          ver="${{ steps.in.outputs.version }}"
+          sed -i -E "s/^(${key} = \")[^\"]*(\")/\1${ver}\2/" config.toml
+          if git diff --quiet config.toml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Already at ${ver}, nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "chore: bump ${key} to ${ver}"
+            git push
+          fi
+
+      # A GITHUB_TOKEN push does not retrigger the on-push Deploy workflow, so
+      # dispatch it explicitly when the version actually changed.
+      - name: Trigger deploy
+        if: steps.bump.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run build-action.yaml --ref master

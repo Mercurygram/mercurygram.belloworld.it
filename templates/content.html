@@ -1,0 +1,89 @@
+{% import "macros.html" as macros %}
+
+{% macro hero() %}
+<header class="hero" id="top">
+  {{ macros::nav() }}
+  <div class="hero-body">
+    {{ macros::mark(cls="hero-mark") }}
+    <h1 class="wordmark" data-text="Mercurygram">Mercurygram</h1>
+    <p class="hero-tagline">{{ config.extra.tagline }}</p>
+    <p class="hero-sub">Privacy and security focused forks of Telegram for Android and Desktop. No Google services, notifications over UnifiedPush, built from source.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#android">Get it on Android</a>
+      <a class="btn btn-ghost" href="#desktop">Get it on Desktop</a>
+    </div>
+    <p class="hero-meta"><code>{{ config.extra.package_id }}</code> &middot; Android {{ config.extra.android_version }} &middot; Desktop {{ config.extra.desktop_version }}</p>
+  </div>
+</header>
+{% endmacro hero %}
+
+{% macro why() %}
+<section class="why" id="why">
+  <p class="eyebrow">Why a fork</p>
+  <h2 class="section-title">Telegram, without the Google leash.</h2>
+  <ul class="why-grid">
+    <li class="why-item">
+      <h3>De-googled by default</h3>
+      <p>Firebase and Google Play services are stripped out. Push notifications run over <a href="https://unifiedpush.org" rel="noopener">UnifiedPush</a> instead of FCM, so your phone never has to talk to Google to ring.</p>
+    </li>
+    <li class="why-item">
+      <h3>Less network tracking</h3>
+      <p>An opt-in toggle defends against the passive <code>auth_key_id</code> fingerprint that lets a network observer correlate your device across IP changes.</p>
+    </li>
+    <li class="why-item">
+      <h3>Open maps and emoji</h3>
+      <p>Location uses MapLibre and OpenStreetMap, not Google Maps. Emoji are Google Noto, rendered locally. Add custom emoji with the built-in importer.</p>
+    </li>
+    <li class="why-item">
+      <h3>Reproducible from source</h3>
+      <p>BoringSSL, FFmpeg, libvpx, dav1d and the rest are compiled from source. Android ships on F-Droid; Desktop ships on Flathub. No mystery binaries.</p>
+    </li>
+  </ul>
+</section>
+{% endmacro why %}
+
+{% macro android() %}
+<section class="download" id="android">
+  <div class="dl-head">
+    <p class="eyebrow">Android &middot; <code>{{ config.extra.package_id }}</code> &middot; v{{ config.extra.android_version }}</p>
+    <h2 class="section-title">Mercurygram for Android</h2>
+    <p class="dl-lede">A fork of the Telegram app for Android with the de-googling patches of Telegram-FOSS forward-ported on top. Pick the source you trust.</p>
+  </div>
+  <div class="dl-grid">
+    <a class="dl-card dl-card-primary" href="{{ config.extra.android_releases }}" rel="noopener">
+      <span class="dl-tag">recommended</span>
+      <span class="dl-name">GitHub Releases</span>
+      <span class="dl-desc">Latest signed APK, per CPU architecture. Updates via the in-app updater.</span>
+    </a>
+    <a class="dl-card" href="{{ config.extra.android_fdroid }}" rel="noopener">
+      <span class="dl-name">F-Droid</span>
+      <span class="dl-desc">Built and signed by the F-Droid project from source.</span>
+    </a>
+    <a class="dl-card" href="{{ config.extra.android_obtainium }}" rel="noopener">
+      <span class="dl-name">Obtainium</span>
+      <span class="dl-desc">One-click setup that tracks GitHub releases automatically. Open on your Android device.</span>
+    </a>
+  </div>
+</section>
+{% endmacro android %}
+
+{% macro desktop() %}
+<section class="download" id="desktop">
+  <div class="dl-head">
+    <p class="eyebrow">Desktop &middot; v{{ config.extra.desktop_version }}</p>
+    <h2 class="section-title">Mercurygram Desktop</h2>
+    <p class="dl-lede">A fork of Telegram Desktop, the companion to the Android client. Signed with Mercurygram's own update keys, with the in-app updater pointed at the Mercurygram release server.</p>
+  </div>
+  <div class="dl-grid">
+    <a class="dl-card dl-card-primary" href="{{ config.extra.desktop_releases }}" rel="noopener">
+      <span class="dl-tag">Windows &middot; macOS &middot; Linux</span>
+      <span class="dl-name">GitHub Releases</span>
+      <span class="dl-desc">Portable and installer builds for all three platforms.</span>
+    </a>
+    <a class="dl-card" href="{{ config.extra.desktop_flathub }}" rel="noopener">
+      <span class="dl-name">Flathub</span>
+      <span class="dl-desc">Sandboxed Flatpak for Linux: <code>flatpak install flathub {{ config.extra.package_id }}</code></span>
+    </a>
+  </div>
+</section>
+{% endmacro desktop %}
