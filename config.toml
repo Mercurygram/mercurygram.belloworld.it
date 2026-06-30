@@ -23,7 +23,7 @@ email = "&#098;&#101;&#108;&#108;&#111;&#064;&#098;&#101;&#108;&#108;&#111;&#119
 
 tagline = "Telegram, de-googled."
 android_version = "12.8.1.2"
-desktop_version = "6.9.3.6"
+desktop_version = "6.9.3.7"
 package_id = "it.belloworld.mercurygram"
 
 github_org = "https://github.com/Mercurygram"
