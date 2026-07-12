@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://mercurygram.belloworld.it"
+base_url = "https://mercurygram.org"
 
 title = "Mercurygram"
 description = "Telegram, de-googled. Privacy and security focused forks of Telegram for Android and Desktop."

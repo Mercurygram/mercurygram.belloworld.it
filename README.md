@@ -1,6 +1,6 @@
-# mercurygram.belloworld.it
+# mercurygram.org
 
-Source for [mercurygram.belloworld.it](https://mercurygram.belloworld.it), the landing page for
+Source for [mercurygram.org](https://mercurygram.org), the landing page for
 the [Mercurygram](https://github.com/Mercurygram) project: privacy and security focused forks of
 Telegram for Android ([Mercurygram](https://github.com/Mercurygram/Mercurygram)) and Desktop
 ([mdesktop](https://github.com/Mercurygram/mdesktop)).
